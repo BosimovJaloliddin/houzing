@@ -1,13 +1,23 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  background: var(--colorPrimary);
+`;
 const Wrapper = styled.div`
+  max-width: 1440px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
-  background: var(--colorPrimary);
   color: #ffff;
   padding: var(--padding);
   height: 64px;
@@ -34,4 +44,4 @@ const Link = styled(NavLink)`
   text-decoration: none;
 `;
 
-export { Container, Wrapper, Contents, Logo, Link };
+export { Container, Main, Wrapper, Contents, Logo, Link };
