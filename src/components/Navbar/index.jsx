@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Container, Wrapper, Contents, Logo, Link, Main } from "./style";
 import { navbar } from "../../utils/navbar";
+import Button from "../../components/Generic/Button";
 
 import logoImage from "../../assets/logo/logo.svg";
 
@@ -29,7 +30,15 @@ const Navbar = () => {
             })}
           </Contents>
           <Contents>
-            <button>Sign in</button>
+            <Button
+              onClick={() => navigate("sinup")}
+              type={"dark"}
+              height={44}
+              width={120}
+              fontSize={14}
+            >
+              Sign In
+            </Button>
           </Contents>
         </Wrapper>
       </Main>
