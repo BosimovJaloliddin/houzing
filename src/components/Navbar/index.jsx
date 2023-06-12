@@ -17,21 +17,23 @@ const Navbar = () => {
             <h3>Houzing</h3>
           </Contents>
           <Contents>
-            {navbar.map(({ path, title }, index) => {
+            {navbar.map(({ path, title, hidden }, index) => {
               return (
-                <Link
-                  className={({ isActive }) => isActive && "active"}
-                  key={index}
-                  to={path}
-                >
-                  {title}
-                </Link>
+                !hidden && (
+                  <Link
+                    className={({ isActive }) => isActive && "active"}
+                    key={index}
+                    to={path}
+                  >
+                    {title}
+                  </Link>
+                )
               );
             })}
           </Contents>
           <Contents>
             <Button
-              onClick={() => navigate("sinup")}
+              onClick={() => navigate("/sinup")}
               type={"dark"}
               height={44}
               width={120}

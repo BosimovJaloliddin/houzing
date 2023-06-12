@@ -4,7 +4,7 @@ const getType = ({ type }) => {
   switch (type) {
     case "light":
       return {
-        background: "#fffff",
+        background: "#ffff",
         border: "1px solid #E6E9EC",
         color: "#0D263B",
       };
