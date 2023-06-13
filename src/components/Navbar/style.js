@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
 `;
 const Main = styled.div`
   display: flex;

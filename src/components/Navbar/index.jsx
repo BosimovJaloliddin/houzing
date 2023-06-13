@@ -10,8 +10,8 @@ import {
   Main,
 } from "./style";
 import { navbar } from "../../utils/navbar";
+import Filter from "../Filter";
 import Button from "../../components/Generic/Button";
-
 import logoImage from "../../assets/logo/logo.svg";
 
 const Navbar = () => {
@@ -52,6 +52,7 @@ const Navbar = () => {
           </Contents>
         </Wrapper>
       </Main>
+      <Filter />
       <Outlet />
     </Container>
   );
