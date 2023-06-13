@@ -1,34 +1,5 @@
 import styled from "styled-components";
 
-// const getType = ({ type }) => {
-//   switch (type) {
-//     case "light":
-//       return {
-//         background: "#fffff",
-//         border: "1px solid #E6E9EC",
-//         color: "#0D263B",
-//       };
-//     case "dark":
-//       return {
-//         background: "transparent",
-//         border: "1px solid #ffff",
-//         color: "#ffff",
-//       };
-//     case "primary":
-//       return {
-//         background: "#0061DF",
-//         border: "none",
-//         color: "#ffff",
-//       };
-//     default:
-//       return {
-//         background: "#0061DF",
-//         border: "none",
-//         color: "#ffff",
-//       };
-//   }
-// };
-
 const Container = styled.input`
   font-family: "Montserrat", sans-serif;
   display: flex;
