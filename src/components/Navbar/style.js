@@ -35,6 +35,11 @@ const Contents = styled.div`
 const Logo = styled.img`
   padding-right: 12px;
 `;
+const LogoName = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+`;
 const Link = styled(NavLink)`
   font-size: 16px;
   font-weight: 400;
@@ -44,4 +49,4 @@ const Link = styled(NavLink)`
   text-decoration: none;
 `;
 
-export { Container, Main, Wrapper, Contents, Logo, Link };
+export { Container, Main, Wrapper, Contents, Logo, LogoName, Link };

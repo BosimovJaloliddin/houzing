@@ -1,6 +1,14 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Container, Wrapper, Contents, Logo, Link, Main } from "./style";
+import {
+  Container,
+  Wrapper,
+  Contents,
+  Logo,
+  LogoName,
+  Link,
+  Main,
+} from "./style";
 import { navbar } from "../../utils/navbar";
 import Button from "../../components/Generic/Button";
 
@@ -14,7 +22,7 @@ const Navbar = () => {
         <Wrapper>
           <Contents onClick={() => navigate("/")} logo="true">
             <Logo src={logoImage} />
-            <h3>Houzing</h3>
+            <LogoName>Houzing</LogoName>
           </Contents>
           <Contents>
             {navbar.map(({ path, title, hidden }, index) => {

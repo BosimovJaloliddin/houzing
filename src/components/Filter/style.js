@@ -4,7 +4,9 @@ import { ReactComponent as filter } from "../../assets/img/setting.svg";
 import { ReactComponent as search } from "../../assets/img/search.svg";
 
 const Container = styled.div`
+  max-width: 1440px;
   display: flex;
+  margin: 0 auto;
   gap: 20px;
   padding: var(--padding);
   padding-top: 10px;
