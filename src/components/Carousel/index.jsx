@@ -14,7 +14,6 @@ import {
   Bath,
 } from "./style";
 import { useRef } from "react";
-
 import houseImg1 from "../../assets/img/home1.svg";
 import houseImg2 from "../../assets/img/home2.svg";
 

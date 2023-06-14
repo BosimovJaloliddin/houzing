@@ -7,9 +7,9 @@ import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 
 const Container = styled.div`
   position: relative;
-  height: 571px;
-  margin-bottom: 3rem;
+  max-height: 571px;
   overflow: hidden;
+  margin-top: 10px;
 `;
 
 const Arrow = styled(arrow)`
