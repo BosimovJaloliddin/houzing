@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as arrow } from "../../assets/icons/arrow.svg";
+import { ReactComponent as bad } from "../../assets/icons/bad.svg";
+import { ReactComponent as car } from "../../assets/icons/car.svg";
+import { ReactComponent as size } from "../../assets/icons/size.svg";
+import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 
 const Container = styled.div`
   position: relative;
@@ -61,6 +65,7 @@ Content.Title = styled.h1`
   line-height: 48px;
   letter-spacing: -0.02em;
   color: #ffffff;
+  margin-bottom: 8px;
 `;
 Content.Desc = styled.div``;
 Content.Price = styled.div`
@@ -71,5 +76,33 @@ Content.Price = styled.div`
   letter-spacing: -0.02em;
   color: #ffffff;
 `;
+const HouseInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 24px;
+`;
+HouseInfo.Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+`;
+const Bad = styled(bad)``;
+const Car = styled(car)``;
+const Size = styled(size)``;
+const Bath = styled(bath)``;
 
-export { Container, Arrow, CarouselImg, Blur, Content };
+export {
+  Container,
+  Arrow,
+  CarouselImg,
+  Blur,
+  Content,
+  HouseInfo,
+  Bad,
+  Car,
+  Size,
+  Bath,
+};
