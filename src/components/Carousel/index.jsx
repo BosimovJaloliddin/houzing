@@ -43,25 +43,25 @@ const GenCarousel = ({ bad, bath, car, size }) => {
       <Blur />
       <Content>
         <Content.Title>Skyper Pool Partment</Content.Title>
-        <Content.Desc className="info">
+        <Content.Desc className="infoWhite">
           112 Glenwood Ave Hyde Park, Boston, MA
         </Content.Desc>
         <HouseInfo>
           <HouseInfo.Item>
             <Bad />
-            <div className="info">{bad} bads</div>
+            <div className="infoWhite">{bad} bads</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
             <Bath />
-            <div className="info">{bath} baths</div>
+            <div className="infoWhite">{bath} baths</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
             <Car />
-            <div className="info">{car} cars</div>
+            <div className="infoWhite">{car} cars</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
             <Size />
-            <div className="info"> {size} Sq Ft</div>
+            <div className="infoWhite"> {size} Sq Ft</div>
           </HouseInfo.Item>
         </HouseInfo>
         <Content.Price>$5,250/mo</Content.Price>
