@@ -15,19 +15,30 @@ import {
 } from "./style";
 import noImg from "../../assets/img/noimg.png";
 
-const HouseCard = ({ url, title, location, bad, bath, car, size }) => {
+const HouseCard = ({ data }) => {
+  const {
+    address,
+    city,
+    country,
+    description,
+    price,
+    salePrice,
+    houseDetails: { bath, beds, area, garage },
+  } = data;
   return (
     <Container>
-      <CardImg src={url || noImg} />
+      <CardImg src={data.attachments[0].imgPath || noImg} />
       <CardWrapp>
-        <div className="subTitle">{title || "New Apartment Nice Wiew"}</div>
+        <div className="subTitle">
+          {country} {city} {description}
+        </div>
         <div className="infoDark">
-          {location || "Quincy St, Brooklyn, NY, USA"}
+          {address || "Quincy St, Brooklyn, NY, USA"}
         </div>
         <CardItems>
           <CardItems.Item>
             <Bad />
-            {bad} Bads
+            {beds} Bads
           </CardItems.Item>
           <CardItems.Item>
             <Bath />
@@ -35,11 +46,11 @@ const HouseCard = ({ url, title, location, bad, bath, car, size }) => {
           </CardItems.Item>
           <CardItems.Item>
             <Car />
-            {car} Cars
+            {garage} Cars
           </CardItems.Item>
           <CardItems.Item>
             <Size />
-            {size} Sq Ft
+            {area} Sq Ft
           </CardItems.Item>
         </CardItems>
       </CardWrapp>
@@ -47,8 +58,8 @@ const HouseCard = ({ url, title, location, bad, bath, car, size }) => {
       <CardWrapp>
         <Footer>
           <Footer.Item>
-            <Price>$2,800/mo</Price>
-            <div className="subTitle">$7,500/mo</div>
+            <Price>${salePrice}/mo</Price>
+            <div className="subTitle">${price}/mo</div>
           </Footer.Item>
           <Footer.Item row="row">
             <Setting />

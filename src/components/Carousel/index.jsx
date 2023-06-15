@@ -20,7 +20,7 @@ import houseImg2 from "../../assets/img/home2.svg";
 const GenCarousel = ({ bad, bath, car, size }) => {
   const slider = useRef();
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
+    // console.log(currentSlide);
   };
 
   const onMove = ({

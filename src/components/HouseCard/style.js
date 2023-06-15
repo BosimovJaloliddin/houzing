@@ -14,7 +14,6 @@ const Container = styled.div`
   border-radius: 3px;
   transition: all 0.6s;
   box-shadow: 0 0 5px #e6e9ec;
-  margin: 100px;
   &:hover {
     box-shadow: 0 0 17px #e6e9ec;
   }
@@ -28,6 +27,7 @@ const CardWrapp = styled.div`
 const CardImg = styled.img`
   width: 100%;
   max-height: 220px;
+  min-height: 220px;
   margin-bottom: 24px;
 `;
 const CardItems = styled.div`
