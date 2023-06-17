@@ -41,7 +41,7 @@ const Navbar = () => {
           </Contents>
           <Contents>
             <Button
-              onClick={() => navigate("/sinup")}
+              onClick={() => navigate("/signup")}
               type={"dark"}
               height={44}
               width={120}

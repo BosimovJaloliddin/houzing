@@ -7,7 +7,9 @@ import { ReactComponent as love } from "../../assets/icons/love.svg";
 import { ReactComponent as setting } from "../../assets/icons/card-arrow.svg";
 
 const Container = styled.div`
-  width: 380px;
+  width: 100%;
+  max-width: 380px;
+  min-width: 330px;
   height: 429px;
   background: #ffffff;
   border: 1px solid #e6e9ec;
@@ -27,7 +29,7 @@ const CardWrapp = styled.div`
 const CardImg = styled.img`
   width: 100%;
   max-height: 220px;
-  min-height: 220px;
+  min-height: 200px;
   margin-bottom: 24px;
 `;
 const CardItems = styled.div`

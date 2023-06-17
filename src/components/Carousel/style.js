@@ -7,8 +7,7 @@ import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 
 const Container = styled.div`
   position: relative;
-  max-height: 571px;
-  overflow: hidden;
+  max-height: fit-content;
   margin-top: 10px;
 `;
 
@@ -16,11 +15,11 @@ const Arrow = styled(arrow)`
   position: absolute;
   width: 45px;
   height: 45px;
-  background: rgba(255, 255, 255, 0.4);
   top: 50%;
-  z-index: 2;
-  border-radius: 50%;
   padding: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  z-index: 2;
   color: white;
   cursor: pointer;
   transition: all 0.7s;
@@ -28,7 +27,6 @@ const Arrow = styled(arrow)`
   left: ${({ left }) => left && "20px"};
   right: ${({ left }) => !left && "20px"};
   transform: ${({ left }) => left && "rotate(180deg)"};
-
   &:hover {
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 4px #888;

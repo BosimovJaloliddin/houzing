@@ -51,7 +51,7 @@ const Filter = () => {
         <Input
           onChange={onChange}
           defaultValue={query.get("city")}
-          name="city"
+          name="address"
           ref={cityRef}
           placeholder="City"
         />
