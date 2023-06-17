@@ -53,3 +53,8 @@ body {
   line-height: 20px;
   color: #696969;
 }
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 26px !important;
+}
