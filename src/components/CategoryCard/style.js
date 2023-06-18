@@ -7,11 +7,14 @@ const Container = styled.div`
   background: #ffffff;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
+  cursor: pointer;
 `;
 
 const CardImg = styled.img`
-  width: 280px;
-  height: 350px;
+  max-width: 280px;
+  min-width: 250px;
+  max-height: 350px;
+  min-height: 320px;
 `;
 const Blur = styled.div`
   position: absolute;
@@ -19,7 +22,7 @@ const Blur = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
 `;
 const Content = styled.div`
   position: absolute;

@@ -10,10 +10,9 @@ const settings = {
   infinite: true,
   centerPadding: "20px",
   slidesToShow: 4,
+  centerMode: true,
   speed: 500,
   dots: true,
-
-  appendDots: (dots) => <h1>{dots}</h1>,
 };
 
 const Category = () => {
