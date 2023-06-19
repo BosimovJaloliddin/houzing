@@ -53,8 +53,20 @@ body {
   line-height: 20px;
   color: #696969;
 }
+/* category arrow style */
 .slick-prev:before,
 .slick-next:before {
   color: black !important;
   font-size: 26px !important;
+}
+/* filter select style*/
+.ant-select-selector {
+  height: 44px !important;
+  display: flex;
+  align-items: center;
+}
+.ant-select-selection-item {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.88);
+  text-transform: capitalize;
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Select } from "antd";
 import { ReactComponent as house } from "../../assets/img/house.svg";
 import { ReactComponent as filter } from "../../assets/img/setting.svg";
 import { ReactComponent as search } from "../../assets/img/search.svg";
@@ -37,5 +38,8 @@ const Section = styled.div`
   gap: 20px;
   margin-bottom: 20px;
 `;
+const SelectAnt = styled(Select)`
+  width: 300px;
+`;
 
-export { Container, Icons, MenuWrapper, Section };
+export { Container, Icons, MenuWrapper, Section, SelectAnt };

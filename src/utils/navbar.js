@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import useUniqueId from "../hooks/useId";
 const HomePage = lazy(() => import("../pages/Home"));
 const PropertiesPage = lazy(() => import("../pages/Properties"));
+const SignIn = lazy(() => import("../components/SignIn"));
 
 // import HomePage from "../pages/Home";
 // import PropertiesPage from "../pages/Properties";
@@ -33,7 +34,11 @@ export const navbar = [
   },
   {
     id: useUniqueId,
-    element: <h1>Sign up</h1>,
+    element: (
+      <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <SignIn />
+      </Suspense>
+    ),
     title: "Signup",
     path: "/signup",
     private: false,
