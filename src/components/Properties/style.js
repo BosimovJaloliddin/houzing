@@ -9,7 +9,7 @@ const PropertiesTitle = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  margin-top: 44px;
+  margin-top: 46px;
   margin-bottom: 64px;
 `;
 const Wrapper = styled.div`
