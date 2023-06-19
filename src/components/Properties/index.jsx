@@ -17,7 +17,6 @@ const Properties = () => {
         setState(res?.data || []);
       });
   }, [search]);
-
   return (
     <Container>
       <PropertiesTitle>
