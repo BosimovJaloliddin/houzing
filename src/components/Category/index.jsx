@@ -20,7 +20,9 @@ const Category = () => {
 
   const [state, setState] = useState([]);
   useEffect(() => {
-    fetch(`${url}/houses/list`)
+    fetch(`${url}/categories/list`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
       .then((res) => res.json())
       .then((res) => {
         setState(res?.data || []);
