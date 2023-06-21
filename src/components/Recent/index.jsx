@@ -2,27 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Container, Title } from "./style";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import CategoryCard from "../CategoryCard";
+import HouseCard from "../HouseCard";
 
 const { REACT_APP_BASE_URL: url } = process.env;
 const settings = {
   className: "center",
   infinite: true,
   centerPadding: "20px",
-  slidesToShow: 4,
-  centerMode: true,
+  slidesToShow: 3,
   speed: 500,
   dots: true,
 };
 
-const Category = () => {
+const Recent = () => {
   const navigate = useNavigate();
 
   const [state, setState] = useState([]);
   useEffect(() => {
-    fetch(`${url}/categories/list`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    })
+    fetch(`${url}/houses/list`)
       .then((res) => res.json())
       .then((res) => {
         setState(res?.data || []);
@@ -31,7 +28,7 @@ const Category = () => {
   return (
     <Container>
       <Title>
-        <div className="title">Category</div>
+        <div className="title">Recent Properties for Rent</div>
         <div className="infoDark">
           Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
         </div>
@@ -39,7 +36,8 @@ const Category = () => {
       <Slider {...settings}>
         {state.map((value) => {
           return (
-            <CategoryCard
+            <HouseCard
+              gap={10}
               key={value.id}
               onClick={() => navigate(`/properties?category_id=${value?.id}`)}
               data={value}
@@ -51,4 +49,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Recent;

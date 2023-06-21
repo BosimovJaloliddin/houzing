@@ -13,6 +13,7 @@ import { navbar } from "../../utils/navbar";
 import Filter from "../Filter";
 import Button from "../../components/Generic/Button";
 import logoImage from "../../assets/logo/logo.svg";
+import Footer from "../Footer";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const Navbar = () => {
       </Main>
       <Filter />
       <Outlet />
+      <Footer />
     </Container>
   );
 };

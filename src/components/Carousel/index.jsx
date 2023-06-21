@@ -65,6 +65,7 @@ const GenCarousel = ({ bad, bath, car, size }) => {
         </HouseInfo>
         <Content.Price>$5,250/mo</Content.Price>
       </Content>
+
       <Arrow data-name="right" onClick={onMove} />
     </Container>
   );

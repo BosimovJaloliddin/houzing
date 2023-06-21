@@ -15,7 +15,7 @@ import {
 } from "./style";
 import noImg from "../../assets/img/noimg.png";
 
-const HouseCard = ({ data }) => {
+const HouseCard = ({ data = {}, gap, onClick }) => {
   const {
     address,
     city,
@@ -26,7 +26,7 @@ const HouseCard = ({ data }) => {
     houseDetails: { bath, beds, area, garage },
   } = data;
   return (
-    <Container>
+    <Container onClick={onClick} gap={gap}>
       <CardImg src={data.attachments[0].imgPath || noImg} />
       <CardWrapp>
         <div className="subTitle">

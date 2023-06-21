@@ -19,6 +19,7 @@ const Container = styled.div`
   &:hover {
     box-shadow: 0 0 17px #e6e9ec;
   }
+  cursor: pointer;
 `;
 
 const CardWrapp = styled.div`

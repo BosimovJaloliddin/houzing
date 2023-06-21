@@ -2,14 +2,20 @@ import React from "react";
 import { Container } from "./style";
 import GenCarousel from "../Carousel";
 import Category from "../Category";
-// import HouseCard from "../HouseCard";
+import Recomended from "../Recomended";
+import Why from "../Why";
+import Recent from "../Recent";
+import Banner from "../Banner";
 
 const Home = () => {
   return (
     <Container>
       <GenCarousel />
+      <Recomended />
+      <Why />
       <Category />
-      {/* <HouseCard /> */}
+      <Banner />
+      <Recent />
     </Container>
   );
 };
