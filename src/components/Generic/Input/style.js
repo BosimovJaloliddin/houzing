@@ -14,6 +14,10 @@ const Container = styled.input`
   padding-left: ${({ icon }) => (icon ? `44px` : "20px")};
   height: ${({ height }) => (height ? `${height}px` : "44px")};
   width: ${({ width }) => (width ? `${width}px` : `100%`)};
+
+  &:focus {
+    border: 1px solid #0061df;
+  }
 `;
 
 const Wrapper = styled.div`

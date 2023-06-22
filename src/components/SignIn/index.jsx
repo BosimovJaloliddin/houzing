@@ -1,32 +1,41 @@
 import React, { useRef } from "react";
-import {
-  Container,
-  WrapperLogin,
-  Input,
-  PushLogin,
-  WrapImg,
-  Img,
-} from "./style";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Container, WrapperLogin, WrapImg, Img } from "./style";
 import HouseImg from "../../assets/img/sin-house.png";
+import Input from "../Generic/Input";
+import Button from "../Generic/Button";
+import useRequest from "../../hooks/useRequest";
 
 const SignIn = () => {
-  const pushLogin = () => {
-    fetch("http://localhost:8081/api/public/auth/login", {
+  const navigate = useNavigate();
+  const request = useRequest();
+
+  const info = () => {
+    message.info("Login va Parol to'g'ri");
+  };
+  const warning = () => {
+    message.warning("Login yoki Parol xato");
+  };
+
+  const onClick = () => {
+    request({
+      url: "/public/auth/login",
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+      body: {
         email: loginRef.current.value,
         password: pwRef.current.value,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (!localStorage.getItem("token")) {
-          localStorage.setItem("token", res.authenticationToken);
-        }
-      });
+      },
+      me: true,
+    }).then((res) => {
+      if (res?.authenticationToken) {
+        localStorage.setItem("token", res?.authenticationToken);
+        navigate("/home");
+        info();
+      } else {
+        warning();
+      }
+    });
   };
 
   const loginRef = useRef("");
@@ -38,9 +47,14 @@ const SignIn = () => {
         <Img src={HouseImg} />
       </WrapImg>
       <WrapperLogin>
-        <Input ref={loginRef} type="text" placeholder="Email" />
+        <h3>
+          <b>Sign In</b>
+        </h3>
+        <Input ref={loginRef} type="email" placeholder="Email" />
         <Input ref={pwRef} type="password" placeholder="Password" />
-        <PushLogin onClick={pushLogin}>Login</PushLogin>
+        <Button onClick={onClick} width={"100%"}>
+          Login
+        </Button>
       </WrapperLogin>
     </Container>
   );

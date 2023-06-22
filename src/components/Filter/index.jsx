@@ -32,13 +32,14 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    fetch(`${url}/categories/list`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setState(res.data || []);
-      });
+    localStorage.getItem("token") &&
+      fetch(`${url}/categories/list`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setState(res.data || []);
+        });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,22 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Wrapper, Container, PropertiesTitle } from "./style";
 import HouseCard from "../HouseCard";
-
-const { REACT_APP_BASE_URL: url } = process.env;
+import useRequest from "../../hooks/useRequest";
 
 const Properties = () => {
   const { search } = useLocation();
+  const navigate = useNavigate();
+  const request = useRequest();
 
   const [state, setState] = useState([]);
   useEffect(() => {
-    fetch(`${url}/houses/list${search}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setState(res?.data || []);
-      });
+    request({ url: `/houses/list${search}` }).then((res) => {
+      setState(res?.data || []);
+    });
   }, [search]);
+
+  const onSelect = (id) => {
+    navigate(`/properties/${id}`);
+  };
   return (
     <Container>
       <PropertiesTitle>
@@ -27,7 +31,11 @@ const Properties = () => {
       </PropertiesTitle>
       <Wrapper>
         {state?.map((value, index) => (
-          <HouseCard key={index} data={value} />
+          <HouseCard
+            onClick={() => onSelect(value.id)}
+            key={index}
+            data={value}
+          />
         ))}
       </Wrapper>
     </Container>
