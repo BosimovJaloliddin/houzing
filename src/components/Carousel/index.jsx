@@ -8,10 +8,7 @@ import {
   Blur,
   Content,
   HouseInfo,
-  Bad,
-  Car,
-  Size,
-  Bath,
+  Icons,
 } from "./style";
 import { useRef } from "react";
 import houseImg1 from "../../assets/img/home1.svg";
@@ -47,19 +44,19 @@ const GenCarousel = ({ bad, bath, car, size }) => {
         </Content.Desc>
         <HouseInfo>
           <HouseInfo.Item>
-            <Bad />
+            <Icons.Bad />
             <div className="infoWhite">{bad} bads</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
-            <Bath />
+            <Icons.Bath />
             <div className="infoWhite">{bath} baths</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
-            <Car />
+            <Icons.Car />
             <div className="infoWhite">{car} cars</div>
           </HouseInfo.Item>
           <HouseInfo.Item>
-            <Size />
+            <Icons.Size />
             <div className="infoWhite"> {size} Sq Ft</div>
           </HouseInfo.Item>
         </HouseInfo>
