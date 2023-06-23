@@ -6,6 +6,7 @@ import Recomended from "../Recomended";
 import Why from "../Why";
 import Recent from "../Recent";
 import Banner from "../Banner";
+import Testimonials from "../Testimonials";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Category />
       <Banner />
       <Recent />
+      <Testimonials />
     </Container>
   );
 };
