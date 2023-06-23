@@ -14,7 +14,6 @@ const HouseItem = () => {
       params.id && setState(res?.data);
     });
   }, [params.id]);
-  console.log(state);
   return (
     <Container>
       <h1>{state.name}</h1>

@@ -9,12 +9,17 @@ const Container = styled.div`
   margin: 3rem auto;
   padding: var(--padding);
 `;
-const WrapImg = styled.div``;
-const Img = styled.img``;
+const WrapImg = styled.div`
+  flex: 3;
+`;
+const Img = styled.img`
+  width: 100%;
+`;
 const WrapperLogin = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  flex: 2;
   width: 100%;
 `;
 
