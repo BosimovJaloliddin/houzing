@@ -4,10 +4,7 @@ import {
   CardWrapp,
   CardImg,
   CardItems,
-  Bad,
-  Car,
-  Size,
-  Bath,
+  Icons,
   Footer,
   Price,
   Love,
@@ -37,19 +34,19 @@ const HouseCard = ({ data = {}, onClick }) => {
         </div>
         <CardItems>
           <CardItems.Item>
-            <Bad />
+            <Icons.Bad />
             {beds} Bads
           </CardItems.Item>
           <CardItems.Item>
-            <Bath />
+            <Icons.Bath />
             {bath} Baths
           </CardItems.Item>
           <CardItems.Item>
-            <Car />
+            <Icons.Car />
             {garage} Cars
           </CardItems.Item>
           <CardItems.Item>
-            <Size />
+            <Icons.Size />
             {area} Sq Ft
           </CardItems.Item>
         </CardItems>

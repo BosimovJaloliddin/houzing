@@ -87,20 +87,11 @@ HouseInfo.Item = styled.div`
   justify-content: center;
   gap: 4px;
 `;
-const Bad = styled(bad)``;
-const Car = styled(car)``;
-const Size = styled(size)``;
-const Bath = styled(bath)``;
+const Icons = styled.div``;
 
-export {
-  Container,
-  Arrow,
-  CarouselImg,
-  Blur,
-  Content,
-  HouseInfo,
-  Bad,
-  Car,
-  Size,
-  Bath,
-};
+Icons.Bad = styled(bad)``;
+Icons.Car = styled(car)``;
+Icons.Size = styled(size)``;
+Icons.Bath = styled(bath)``;
+
+export { Container, Arrow, CarouselImg, Blur, Content, HouseInfo, Icons };

@@ -54,16 +54,18 @@ const styleSvg = css`
     fill: #696969;
   }
 `;
-const Bad = styled(bad)`
+
+const Icons = styled.div``;
+Icons.Bad = styled(bad)`
   ${styleSvg}
 `;
-const Car = styled(car)`
+Icons.Car = styled(car)`
   ${styleSvg}
 `;
-const Size = styled(size)`
+Icons.Size = styled(size)`
   ${styleSvg}
 `;
-const Bath = styled(bath)`
+Icons.Bath = styled(bath)`
   ${styleSvg}
 `;
 
@@ -108,10 +110,7 @@ export {
   CardWrapp,
   CardImg,
   CardItems,
-  Bad,
-  Car,
-  Size,
-  Bath,
+  Icons,
   Footer,
   Price,
   Love,
