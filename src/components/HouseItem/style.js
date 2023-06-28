@@ -6,20 +6,29 @@ import { ReactComponent as car } from "../../assets/icons/car.svg";
 import { ReactComponent as size } from "../../assets/icons/size.svg";
 import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 import { ReactComponent as calendar } from "../../assets/icons/calendar.svg";
+import { ReactComponent as dumbbell } from "../../assets/icons/dumbbell.svg";
+import { ReactComponent as dryer } from "../../assets/icons/dryer.svg";
+import { ReactComponent as barbecue } from "../../assets/icons/barbecue.svg";
 
-const Container = styled.div`
+const Wrapper = styled.div`
+  display: flex;
   max-width: 1440px;
   padding: var(--padding);
   margin: auto;
+  gap: ${({ gap }) => gap && `${gap}px`};
+`;
+const Container = styled.div`
+  width: 100%;
+  flex: ${({ flx }) => flx && flx};
 `;
 const Content = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ jc }) => (jc ? jc : "space-between")};
   align-items: ${({ align }) => align && align};
-  margin-top: ${({ top }) => top && top};
+  margin-top: ${({ top }) => top && `${top}px`};
 `;
 Content.Title = styled.div`
-  color: var(--color-2, #0d263b);
+  color: #0d263b;
   font-size: 18px;
   font-family: "Montserrat";
   font-weight: 600;
@@ -31,18 +40,20 @@ const ContentItem = styled.div`
   flex-direction: ${({ cl }) => cl && "column"};
   align-items: ${({ align }) => align && align};
   gap: ${({ gap }) => gap && `${gap}px`};
+  margin-top: ${({ mt }) => mt && `${mt}px`};
+  margin-bottom: ${({ mb }) => mb && `${mb}px`};
 `;
 const Title = styled.div`
-  color: var(--text-1, #0d263b);
   font-size: 24px;
   font-family: Montserrat;
   font-weight: 600;
   line-height: 32px;
   letter-spacing: -0.48px;
+  color: #0d263b;
 `;
 
 const Price = styled.div`
-  color: var(--color-2, #0d263b);
+  color: #0d263b;
   font-size: 24px;
   font-family: "Montserrat";
   font-weight: 600;
@@ -50,12 +61,30 @@ const Price = styled.div`
   letter-spacing: -0.48px;
 `;
 const Description = styled.div`
-  width: 880px;
+  max-width: 880px;
   height: 224px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
   margin-top: 16px;
 `;
-
+const UserInfo = styled.div`
+  border-radius: 3px;
+  border: 1px solid var(--border, #e6e9ec);
+  background: #fff;
+  padding: 24px;
+`;
+const Message = styled.div`
+  font-size: 14px;
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: 20px;
+  color: #0d263b;
+`;
+const MessageInfo = styled.div`
+  font-size: 14px;
+  font-family: Montserrat;
+  line-height: 20px;
+  color: #696969;
+`;
 const Icons = styled.div``;
 
 const styleSvg = css`
@@ -101,4 +130,33 @@ Icons.Calendar = styled(calendar)`
   ${styleSvg}
 `;
 
-export { Container, Content, ContentItem, Title, Price, Description, Icons };
+Icons.Calendar = styled(calendar)`
+  ${styleSvg}
+  margin-right: 10px;
+`;
+Icons.Dumbbell = styled(dumbbell)`
+  ${IconStyle}
+  margin-right: 10px;
+`;
+Icons.Dryer = styled(dryer)`
+  ${IconStyle}
+  margin-right: 10px;
+`;
+Icons.Dryer = styled(barbecue)`
+  ${IconStyle}
+  margin-right: 10px;
+`;
+
+export {
+  Container,
+  Wrapper,
+  Content,
+  ContentItem,
+  Title,
+  Price,
+  Description,
+  UserInfo,
+  Message,
+  MessageInfo,
+  Icons,
+};

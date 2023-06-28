@@ -14,7 +14,7 @@ const settings = {
   dots: true,
 };
 
-const Recent = () => {
+const Recent = ({ title }) => {
   const navigate = useNavigate();
 
   const [state, setState] = useState([]);
@@ -28,7 +28,7 @@ const Recent = () => {
   return (
     <Container>
       <Title>
-        <div className="title">Recent Properties for Rent</div>
+        <div className="title">{title || "Recent Properties for Rent"}</div>
         <div className="infoDark">
           Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
         </div>
@@ -39,7 +39,7 @@ const Recent = () => {
             <HouseCard
               gap={10}
               key={value.id}
-              onClick={() => navigate(`/properties?category_id=${value?.id}`)}
+              onClick={() => navigate(`/properties/${value?.id}`)}
               data={value}
             />
           );
