@@ -36,7 +36,7 @@ const HouseItem = () => {
   }, [params.id]);
 
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    // console.log(`checked = ${e.target.checked}`);
   };
   return (
     <>
