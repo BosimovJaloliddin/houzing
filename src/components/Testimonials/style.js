@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { ReactComponent as message } from "../../assets/icons/why-message.svg";
-import { ReactComponent as location } from "../../assets/icons/why-location.svg";
-import { ReactComponent as home } from "../../assets/icons/why-home.svg";
-import { ReactComponent as phone } from "../../assets/icons/why-phone.svg";
+// import { ReactComponent as message } from "../../assets/icons/why-message.svg";
+// import { ReactComponent as location } from "../../assets/icons/why-location.svg";
+// import { ReactComponent as home } from "../../assets/icons/why-home.svg";
+// import { ReactComponent as phone } from "../../assets/icons/why-phone.svg";
 
 const Container = styled.div`
   background: #f5f7fc;
