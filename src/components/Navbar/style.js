@@ -49,4 +49,19 @@ const Link = styled(NavLink)`
   text-decoration: none;
 `;
 
-export { Container, Main, Wrapper, Contents, Logo, LogoName, Link };
+const Register = styled.div`
+  width: 177px;
+  background: #fff;
+  box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.06),
+    0px 7px 46px 0px rgba(0, 0, 0, 0.06), 0px 20px 38px 0px rgba(0, 0, 0, 0.06);
+`;
+Register.Item = styled.div`
+  color: #000;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+`;
+
+export { Container, Main, Wrapper, Contents, Logo, LogoName, Link, Register };
