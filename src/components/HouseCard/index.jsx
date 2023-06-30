@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Container,
   CardWrapp,
@@ -7,12 +7,13 @@ import {
   Icons,
   Footer,
   Price,
-  Love,
-  Setting,
 } from "./style";
 import noImg from "../../assets/img/noimg.png";
+import { message } from "antd";
+import { PropertiesContext } from "../../context/properties";
 
 const HouseCard = ({ data = {}, onClick }) => {
+  const [{ refetch }] = useContext(PropertiesContext);
   const {
     address,
     city,
@@ -20,8 +21,33 @@ const HouseCard = ({ data = {}, onClick }) => {
     description,
     price,
     salePrice,
+    favorite,
+    id,
     houseDetails: { bath, beds, area, garage },
   } = data;
+
+  const save = (event) => {
+    event.stopPropagation();
+    fetch(
+      `http://localhost:8081/api/v1/houses/addFavourite/${id}?favourite=${!favorite}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        !favorite
+          ? res?.success && message.info("Liked")
+          : res?.success && message.warning("Disliked");
+        refetch && refetch();
+      });
+  };
+  console.log(favorite);
+
   return (
     <Container onClick={onClick}>
       <CardImg src={data.attachments[0].imgPath || noImg} />
@@ -59,8 +85,8 @@ const HouseCard = ({ data = {}, onClick }) => {
             <div className="subTitle">${price}/mo</div>
           </Footer.Item>
           <Footer.Item row="row">
-            <Setting />
-            <Love />
+            <Icons.Setting />
+            <Icons.Love onClick={save} favorite={favorite} />
           </Footer.Item>
         </Footer>
       </CardWrapp>

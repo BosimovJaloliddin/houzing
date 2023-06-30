@@ -2,8 +2,9 @@ import React, { lazy, Suspense } from "react";
 import useUniqueId from "../hooks/useId";
 const HomePage = lazy(() => import("../pages/Home"));
 const PropertiesPage = lazy(() => import("../pages/Properties"));
-const SignIn = lazy(() => import("../components/SignIn"));
-const HouseItem = lazy(() => import("../components/HouseItem"));
+const RegisterPage = lazy(() => import("../pages/Register"));
+const HouseItem = lazy(() => import("../pages/HouseItem"));
+const FavouritePage = lazy(() => import("../pages/Favourite"));
 
 // import HomePage from "../pages/Home";
 // import PropertiesPage from "../pages/Properties";
@@ -37,6 +38,18 @@ export const navbar = [
     id: useUniqueId,
     element: (
       <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <FavouritePage />
+      </Suspense>
+    ),
+    title: "Favourite",
+    path: "/favourite",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: useUniqueId,
+    element: (
+      <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
         <HouseItem />
       </Suspense>
     ),
@@ -50,11 +63,11 @@ export const navbar = [
     id: useUniqueId,
     element: (
       <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
-        <SignIn />
+        <RegisterPage />
       </Suspense>
     ),
     title: "Signup",
-    path: "/signup",
+    path: "/signin",
     private: false,
     hidden: true,
   },

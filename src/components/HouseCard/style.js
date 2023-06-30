@@ -55,7 +55,28 @@ const styleSvg = css`
   }
 `;
 
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+`;
+Footer.Item = styled.div`
+  display: flex;
+  flex-direction: ${({ row }) => (row ? "row" : "column")};
+  cursor: pointer;
+`;
+const Price = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  text-decoration-line: line-through;
+  color: #696969;
+`;
+
 const Icons = styled.div``;
+
 Icons.Bad = styled(bad)`
   ${styleSvg}
 `;
@@ -68,51 +89,23 @@ Icons.Size = styled(size)`
 Icons.Bath = styled(bath)`
   ${styleSvg}
 `;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 8px 0;
-`;
-Footer.Item = styled.div`
-  display: flex;
-  flex-direction: ${({ row }) => (row ? "row" : "column")};
-  cursor: pointer;
-`;
-
-const Price = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
-  text-decoration-line: line-through;
-  color: #696969;
-`;
-const Love = styled(love)`
+Icons.Love = styled(love)`
   width: 35px;
   height: 35px;
   padding: 10px;
-  background: #f6f8f9;
+  background: ${({ favorite }) => (favorite ? "red" : "#f6f8f9")};
   border-radius: 60px;
-  &:hover {
+  path {
+    fill: ${({ favorite }) => favorite && "#fff"};
+  }
+  &:active {
     transform: scale(0.9);
   }
 `;
-const Setting = styled(setting)`
+Icons.Setting = styled(setting)`
   width: 35px;
   height: 35px;
   padding: 10px;
 `;
 
-export {
-  Container,
-  CardWrapp,
-  CardImg,
-  CardItems,
-  Icons,
-  Footer,
-  Price,
-  Love,
-  Setting,
-};
+export { Container, CardWrapp, CardImg, CardItems, Icons, Footer, Price };

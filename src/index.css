@@ -70,3 +70,7 @@ body {
   color: rgba(0, 0, 0, 0.88);
   text-transform: capitalize;
 }
+/* register tabs style */
+.ant-tabs-nav-wrap {
+  justify-content: center;
+}

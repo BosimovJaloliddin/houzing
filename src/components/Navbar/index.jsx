@@ -19,14 +19,40 @@ import Footer from "../Footer";
 
 const Navbar = () => {
   let token = localStorage.getItem("token");
-
   const navigate = useNavigate();
+
+  const onClick = () => {
+    if (token) {
+      navigate("/home");
+    } else {
+      navigate("/signin");
+    }
+  };
+  const onClickProfile = ({
+    target: {
+      dataset: { name },
+    },
+  }) => {
+    if (name === "log-out") {
+      localStorage.removeItem("token");
+      navigate("/home");
+    } else navigate(`/${name}`);
+  };
 
   const menu = (
     <Register>
-      <h1>My profile</h1>
-      <h1>My Properties</h1>
-      <h1>Favourites</h1>
+      <Register.Item data-name="my-profile" onClick={onClickProfile}>
+        My profile
+      </Register.Item>
+      <Register.Item data-name="my-properties" onClick={onClickProfile}>
+        My Properties
+      </Register.Item>
+      <Register.Item data-name="favourite" onClick={onClickProfile}>
+        Favourites
+      </Register.Item>
+      <Register.Item data-name="log-out" onClick={onClickProfile}>
+        Log out
+      </Register.Item>
     </Register>
   );
   return (
@@ -57,7 +83,7 @@ const Navbar = () => {
               <Dropdown
                 trigger={["click"]}
                 dropdownRender={() => menu}
-                placement="bottomRight"
+                placement="topRight"
                 arrow={{
                   pointAtCenter: true,
                 }}
@@ -66,7 +92,7 @@ const Navbar = () => {
               </Dropdown>
             ) : (
               <Button
-                onClick={() => navigate("/signup")}
+                onClick={onClick}
                 type={"dark"}
                 height={44}
                 width={120}

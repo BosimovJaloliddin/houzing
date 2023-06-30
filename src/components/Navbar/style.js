@@ -50,7 +50,11 @@ const Link = styled(NavLink)`
 `;
 
 const Register = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   width: 177px;
+  padding: 16px;
   background: #fff;
   box-shadow: 0px 8px 15px 0px rgba(0, 0, 0, 0.06),
     0px 7px 46px 0px rgba(0, 0, 0, 0.06), 0px 20px 38px 0px rgba(0, 0, 0, 0.06);
@@ -58,10 +62,11 @@ const Register = styled.div`
 Register.Item = styled.div`
   color: #000;
   font-size: 14px;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  cursor: pointer;
 `;
 
 export { Container, Main, Wrapper, Contents, Logo, LogoName, Link, Register };
