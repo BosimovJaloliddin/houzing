@@ -10,7 +10,7 @@ const getType = ({ type }) => {
       };
     case "dark":
       return {
-        background: "transparent",
+        background: "#0D263B",
         border: "1px solid #ffff",
         color: "#ffff",
       };
