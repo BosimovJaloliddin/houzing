@@ -13,7 +13,7 @@ const MyProperties = () => {
   const [state, setState] = useState([]);
   useEffect(() => {
     request({
-      url: `/houses/me`,
+      url: `/houses/list`,
     }).then((res) => {
       setState(res?.data || []);
     });

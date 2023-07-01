@@ -52,6 +52,7 @@ const Container = styled.button`
   &:active {
     opacity: 0.7;
   }
+  opacity: ${({ disabled }) => disabled && 0.3};
 `;
 
 export { Container };
