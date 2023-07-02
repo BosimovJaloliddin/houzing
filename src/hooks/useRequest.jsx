@@ -1,13 +1,21 @@
 const { REACT_APP_BASE_URL } = process.env;
 
 const useRequest = () => {
-  const request = async ({ me, url, method = "GET", token, headers, body }) => {
+  const request = async ({
+    me,
+    url,
+    method = "GET",
+    token,
+    headers = {},
+    body,
+  }) => {
     if (token)
       headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
 
     const options = {
       method,
       headers: {
+        ...headers,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),

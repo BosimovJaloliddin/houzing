@@ -50,7 +50,11 @@ const HouseCard = ({ data = {}, onClick }) => {
 
   return (
     <Container onClick={onClick}>
-      <CardImg src={data.attachments[0].imgPath || noImg} />
+      <CardImg
+        src={
+          (data.attachments[0]?.imgPath && data.attachments[0].imgPath) || noImg
+        }
+      />
       <CardWrapp>
         <div className="subTitle">
           {country} {city} {description}

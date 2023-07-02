@@ -13,6 +13,7 @@ const Input = forwardRef(
       defaultValue,
       name,
       icon,
+      type,
     },
     ref
   ) => {
@@ -30,6 +31,7 @@ const Input = forwardRef(
           placeholder={placeholder}
           paddingLeft={paddingLeft}
           icon={icon}
+          type={type}
         />
       </Wrapper>
     );

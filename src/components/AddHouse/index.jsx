@@ -1,92 +1,82 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Container, Section, SelectAnt, Wrapper } from "./style";
+import { useNavigate } from "react-router-dom";
+import { Container, Section, Wrapper } from "./style";
 import useRequest from "../../hooks/useRequest";
 import { useFormik } from "formik";
-import { Checkbox } from "antd";
+import { Checkbox, Select, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import Yandex from "../Generic/Yandex";
 import Input from "../Generic/Input";
 import Button from "../Generic/Button";
 import { Icons } from "../MyProperties/style";
 
-const { REACT_APP_BASE_URL: url } = process.env;
+// const { REACT_APP_BASE_URL: url } = process.env;
 
 const AddHouse = () => {
-  const { search } = useLocation();
+  // const { search } = useLocation();
   const request = useRequest();
+  const navigation = useNavigate();
 
   const [img, setImg] = useState("");
   const [imgs, setImgs] = useState([]);
   const [state, setState] = useState([]);
   const [category, setCategory] = useState([]);
+
+  const info = () => {
+    message.info("Yangi uy qo'shildi!");
+  };
+
   useEffect(() => {
     request({
       url: `/houses/list`,
     }).then((res) => {
       setState(res?.data || []);
     });
-  }, [search]);
+  }, []);
 
+  //category
   useEffect(() => {
     localStorage.getItem("token") &&
-      fetch(`${url}/categories/list`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setCategory(res.data || []);
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      request({
+        url: `/categories/list`,
+        token: true,
+      }).then((res) => {
+        setCategory(res.data || []);
+      });
   }, []);
   const formik = useFormik({
     initialValues: {
-      address: "",
-      city: "",
-      country: "",
-      region: "",
-      name: "",
-      zipCode: "",
-      area: "",
-      bath: "",
-      beds: "",
-      garage: "",
-      room: "",
-      yearBuilt: "",
-      price: "",
-      salePrice: "",
-      latitude: "",
-      longitude: "",
-      airCondition: false,
-      courtyard: false,
-      furniture: false,
-      gasStove: false,
-      internet: false,
-      busStop: false,
-      garden: false,
-      market: false,
-      park: false,
-      parking: false,
-      school: false,
-      stadium: false,
-      subway: false,
-      superMarket: false,
+      componentsDto: {},
+      homeAmenitiesDto: {},
+      houseDetails: {},
     },
     onSubmit: (values) => {
-      // console.log(values);
+      console.log({ ...values, attachments: imgs });
+      request({
+        method: "POST",
+        url: `/houses`,
+        token: true,
+        body: { ...values, attachments: imgs },
+      }).then((res) => {
+        console.log(res);
+        if (res.success) {
+          navigation("/myproperties");
+          info();
+        }
+      });
     },
   });
 
-  const onChange = ({ target: { checked, name, value } }) => {
+  const onChange = ({ target: { value } }) => {
     // console.log(`checked = ${e.target.checked}`);
-    formik.values[name] = checked;
+    // formik.values[name] = checked;
     setImg(value);
   };
 
   const addImg = () => {
     if (img.length && imgs.length < 4) {
-      setImgs([...imgs, { id: img.length * Math.random(), url: img }]);
+      setImgs([...imgs, { id: img.length * Math.random(), imgPath: img }]);
       setImg("");
     }
   };
@@ -94,6 +84,10 @@ const AddHouse = () => {
     let res = imgs.filter((val) => val.id !== id);
     setImgs(res);
   };
+  // const handleChange = (value) => {
+  //   console.log(`selected ${value}`);
+  // };
+  // console.log(category);
 
   return (
     <Container>
@@ -109,17 +103,17 @@ const AddHouse = () => {
                 <Input
                   id="address"
                   name="address"
-                  type="address"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.address}
+                  value={formik.values.address || ""}
                   placeholder="address"
                 />
                 <Input
                   id="city"
                   name="city"
-                  type="city"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.city}
+                  value={formik.values.city || ""}
                   placeholder="city"
                 />
               </Section>
@@ -128,17 +122,17 @@ const AddHouse = () => {
                 <Input
                   id="country"
                   name="country"
-                  type="country"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.country}
+                  value={formik.values.country || ""}
                   placeholder="country"
                 />
                 <Input
                   id="region"
                   name="region"
-                  type="region"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.region}
+                  value={formik.values.region || ""}
                   placeholder="region"
                 />
               </Section>
@@ -147,34 +141,34 @@ const AddHouse = () => {
                 <Input
                   id="name"
                   name="name"
-                  type="name"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.name}
+                  value={formik.values.name || ""}
                   placeholder="name"
                 />
                 <Input
                   id="zipCode"
                   name="zipCode"
-                  type="zipCode"
+                  type="text"
                   onChange={formik.handleChange}
-                  value={formik.values.zipCode}
+                  value={formik.values.zipCode || ""}
                   placeholder="zipCode"
                 />
-                <SelectAnt
+                <Select
                   defaultValue={"Select Category"}
-                  onChange={formik.handleChange}
-                  placeholder="Select"
+                  // onChange={formik.handleChange}
+                  value={formik.values.category}
                 >
                   {category.map((value) => (
-                    <SelectAnt.Option
-                      name="category_id"
-                      key={value.id}
+                    <Select.Option
+                      onChange={formik.handleChange}
                       value={value.id}
+                      key={value.id}
                     >
                       {value.name}
-                    </SelectAnt.Option>
+                    </Select.Option>
                   ))}
-                </SelectAnt>
+                </Select>
               </Section>
             </Section>
           </Wrapper>
@@ -185,16 +179,16 @@ const AddHouse = () => {
               <Section gap={20}>
                 <Input
                   id="area"
-                  name="area"
-                  type="area"
+                  name="houseDetails.area"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.area}
                   placeholder="area"
                 />
                 <Input
                   id="bath"
-                  name="bath"
-                  type="bath"
+                  name="houseDetails.bath"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.bath}
                   placeholder="bath"
@@ -204,16 +198,16 @@ const AddHouse = () => {
                 {" "}
                 <Input
                   id="beds"
-                  name="beds"
-                  type="beds"
+                  name="houseDetails.beds"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.beds}
                   placeholder="beds"
                 />
                 <Input
                   id="garage"
-                  name="garage"
-                  type="garage"
+                  name="houseDetails.garage"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.garage}
                   placeholder="garage"
@@ -223,16 +217,16 @@ const AddHouse = () => {
                 {" "}
                 <Input
                   id="room"
-                  name="room"
-                  type="room"
+                  name="houseDetails.room"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.room}
                   placeholder="room"
                 />
                 <Input
                   id="yearBuilt"
-                  name="yearBuilt"
-                  type="yearBuilt"
+                  name="houseDetails.yearBuilt"
+                  type="number"
                   onChange={formik.handleChange}
                   value={formik.values.yearBuilt}
                   placeholder="yearBuilt"
@@ -247,17 +241,17 @@ const AddHouse = () => {
               <Input
                 id="price"
                 name="price"
-                type="price"
+                type="number"
                 onChange={formik.handleChange}
-                value={formik.values.price}
+                value={formik.values.price || ""}
                 placeholder="$ price"
               />
               <Input
                 id="salePrice"
                 name="salePrice"
-                type="salePrice"
+                type="number"
                 onChange={formik.handleChange}
-                value={formik.values.salePrice}
+                value={formik.values.salePrice || ""}
                 placeholder="$ salePrice"
               />
             </Section>
@@ -265,28 +259,8 @@ const AddHouse = () => {
 
           <Wrapper cl="true">
             <div className="subTitle">Location</div>
-            <Section cl="true" gap={30}>
-              <Section gap={20}>
-                <Input
-                  id="latitude"
-                  name="latitude"
-                  type="latitude"
-                  onChange={formik.handleChange}
-                  value={formik.values.latitude}
-                  placeholder="latitude"
-                />
-                <Input
-                  id="longitude"
-                  name="longitude"
-                  type="longitude"
-                  onChange={formik.handleChange}
-                  value={formik.values.longitude}
-                  placeholder="longitude"
-                />
-              </Section>
-              <Section>
-                <Yandex center={state.location} />
-              </Section>
+            <Section>
+              <Yandex center={state.location} />
             </Section>
           </Wrapper>
 
@@ -303,7 +277,7 @@ const AddHouse = () => {
                 {imgs.map((v, idx) => {
                   return (
                     <Section al="true" gap={24} key={idx}>
-                      {v.url} <Icons.Del onClick={() => onDelImg(v.id)} />
+                      {v.imgPath} <Icons.Del onClick={() => onDelImg(v.id)} />
                     </Section>
                   );
                 })}
@@ -317,79 +291,84 @@ const AddHouse = () => {
               <Section cl="true" gap={20}>
                 <Checkbox
                   id="airCondition"
-                  name="airCondition"
+                  name="componentsDto.airCondition"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Air Condition
                 </Checkbox>
                 <Checkbox
                   id="courtyard"
-                  name="courtyard"
+                  name="componentsDto.courtyard"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Courtyard
                 </Checkbox>
                 <Checkbox
                   id="furniture"
-                  name="furniture"
+                  name="componentsDto.furniture"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Furniture
                 </Checkbox>
                 <Checkbox
                   id="gasStove"
-                  name="gasStove"
+                  name="componentsDto.gasStove"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Gas Stove
                 </Checkbox>
                 <Checkbox
                   id="internet"
-                  name="internet"
+                  name="componentsDto.internet"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Internet
                 </Checkbox>
               </Section>
 
               <Section cl="true" gap={20}>
-                <Checkbox id="tv" name="tv" type="checkbox" onChange={onChange}>
+                <Checkbox
+                  id="tv"
+                  name="componentsDto.tv"
+                  type="checkbox"
+                  onChange={formik.handleChange}
+                >
                   TV
                 </Checkbox>
                 <Checkbox
                   id="busStop"
-                  name="busStop"
+                  name="homeAmenitiesDto.busStop"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Bus Stop
                 </Checkbox>
                 <Checkbox
                   id="garden"
-                  name="garden"
+                  name="homeAmenitiesDto.garden"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Garden
                 </Checkbox>
                 <Checkbox
                   id="market"
-                  name="market"
+                  name="homeAmenitiesDto.market"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Market
                 </Checkbox>
                 <Checkbox
                   id="park"
-                  name="park"
+                  name="homeAmenitiesDto.park"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Park
                 </Checkbox>
@@ -398,41 +377,41 @@ const AddHouse = () => {
               <Section cl="true" gap={20}>
                 <Checkbox
                   id="parking"
-                  name="parking"
+                  name="homeAmenitiesDto.parking"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Parking
                 </Checkbox>
                 <Checkbox
                   id="school"
-                  name="school"
+                  name="homeAmenitiesDto.school"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   School
                 </Checkbox>
                 <Checkbox
                   id="stadium"
-                  name="stadium"
+                  name="homeAmenitiesDto.stadium"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Stadium
                 </Checkbox>
                 <Checkbox
                   id="subway"
-                  name="subway"
+                  name="homeAmenitiesDto.subway"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Subway
                 </Checkbox>
                 <Checkbox
                   id="superMarket"
-                  name="superMarket"
+                  name="homeAmenitiesDto.superMarket"
                   type="checkbox"
-                  onChange={onChange}
+                  onChange={formik.handleChange}
                 >
                   Super Market
                 </Checkbox>
@@ -441,8 +420,15 @@ const AddHouse = () => {
           </Wrapper>
 
           <Wrapper>
-            <TextArea rows={7} name="description" placeholder="Description" />
+            <TextArea
+              onChange={formik.handleChange}
+              value={formik.values.description}
+              rows={7}
+              name="description"
+              placeholder="Description"
+            />
           </Wrapper>
+
           <Button type="submit">Submit</Button>
         </Wrapper>
       </form>

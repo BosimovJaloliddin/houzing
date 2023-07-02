@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Table } from "antd";
 import { ReactComponent as garbage } from "../../assets/icons/garbage.svg";
 import { ReactComponent as edit } from "../../assets/icons/edit.svg";
 
@@ -26,6 +27,7 @@ const HouseImg = styled.img`
   height: 100px;
   flex-shrink: 0;
 `;
+const TableAnt = styled(Table)``;
 
 const Icons = styled.div``;
 
@@ -51,4 +53,4 @@ Icons.Edit = styled(edit)`
   ${iconStyle}
 `;
 
-export { Wrapper, Container, Section, HouseImg, Icons };
+export { Wrapper, Container, Section, HouseImg, TableAnt, Icons };

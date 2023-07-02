@@ -1,27 +1,46 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Wrapper, Container, Section, Icons, HouseImg } from "./style";
+import {
+  Wrapper,
+  Container,
+  Section,
+  Icons,
+  HouseImg,
+  TableAnt,
+} from "./style";
 import useRequest from "../../hooks/useRequest";
 import Button from "../Generic/Button";
+import noImg from "../../assets/img/noimg.png";
+import { useQuery } from "react-query";
+import { message } from "antd";
 
 const MyProperties = () => {
   const navigate = useNavigate();
   const request = useRequest();
 
-  const [state, setState] = useState([]);
-  useEffect(() => {
-    request({
-      url: `/houses/list`,
-    }).then((res) => {
-      setState(res?.data || []);
+  const info = () => {
+    message.info("Uy e'loni o'chirildi");
+  };
+
+  const { data, refetch } = useQuery([], () => {
+    return request({
+      url: `/houses/me`,
+      token: true,
     });
-  }, []);
+  });
 
   const onClick = (id) => {
-    let res = state.filter((vl) => vl.id !== id);
-    setState(res);
+    request({
+      method: "DELETE",
+      url: `/houses/${id}`,
+      token: true,
+    }).then((res) => {
+      if (res.success) {
+        info();
+        refetch();
+      }
+    });
   };
 
   const columns = [
@@ -32,11 +51,15 @@ const MyProperties = () => {
           <Wrapper>
             <Section>
               <HouseImg
-                src={state.attachments && state.attachments[0].imgPath}
+                src={
+                  (state.attachments[0]?.imgPath &&
+                    state.attachments[0].imgPath) ||
+                  noImg
+                }
               />
             </Section>
-            <Section cl>
-              <Section cl>
+            <Section cl="true">
+              <Section cl="true">
                 <div className="subTitle">
                   {state.country},{state.region}
                 </div>
@@ -44,7 +67,7 @@ const MyProperties = () => {
                   {state.address},{state.city}
                 </div>
               </Section>
-              <Section cl>
+              <Section cl="true">
                 <div className="infoDark">
                   <del>$ {state.salePrice}/mo</del>
                 </div>
@@ -107,7 +130,7 @@ const MyProperties = () => {
           </Button>
         </div>
       </Section>
-      <Table columns={columns} dataSource={state} />
+      <TableAnt columns={columns} dataSource={data?.data} />
     </Container>
   );
 };

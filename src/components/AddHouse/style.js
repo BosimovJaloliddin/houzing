@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Select } from "antd";
 import { ReactComponent as del } from "../../assets/icons/garbage.svg";
 
 const Container = styled.div`
@@ -30,10 +29,6 @@ const Section = styled.div`
   margin-bottom: ${({ mb }) => mb && `${mb}px`};
 `;
 
-const SelectAnt = styled(Select)`
-  width: 300px;
-`;
-
 const Icons = styled.div``;
 
 Icons.Del = styled(del)`
@@ -46,4 +41,4 @@ Icons.Del = styled(del)`
   }
 `;
 
-export { Wrapper, Container, Section, Icons, SelectAnt };
+export { Wrapper, Container, Section, Icons };
