@@ -30,6 +30,7 @@ const MyProperties = () => {
     });
   });
 
+  //delete
   const onClick = (id) => {
     request({
       method: "DELETE",
@@ -112,7 +113,9 @@ const MyProperties = () => {
       title: "Action",
       render: (state) => (
         <Section>
-          <Icons.Edit />
+          <Icons.Edit
+            onClick={() => navigate(`/myproperties/edithouse/${state.id}`)}
+          />
           <Icons.Del onClick={() => onClick(state.id)} />
         </Section>
       ),

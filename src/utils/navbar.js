@@ -64,6 +64,18 @@ export const navbar = [
     id: useUniqueId,
     element: (
       <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <AddHousePage />
+      </Suspense>
+    ),
+    title: "EditHouse",
+    path: "/myproperties/edithouse/:id",
+    private: false,
+    hidden: true,
+  },
+  {
+    id: useUniqueId,
+    element: (
+      <Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
         <FavouritePage />
       </Suspense>
     ),

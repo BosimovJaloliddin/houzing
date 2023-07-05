@@ -41,11 +41,8 @@ const Navbar = () => {
 
   const menu = (
     <Register>
-      <Register.Item data-name="myprofile" onClick={onClickProfile}>
-        My profile
-      </Register.Item>
       <Register.Item data-name="myproperties" onClick={onClickProfile}>
-        My Properties
+        My Houses
       </Register.Item>
       <Register.Item data-name="favourite" onClick={onClickProfile}>
         Favourites

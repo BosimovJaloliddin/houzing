@@ -35,10 +35,8 @@ const iconStyle = css`
   width: 35px;
   height: 35px;
   padding: 8px;
-  border-radius: 15px;
-  background: #f6f8f9;
   cursor: pointer;
-  &:active {
+  &:hover {
     & path {
       fill: red;
       transform: scale(0.9);
@@ -51,6 +49,11 @@ Icons.Del = styled(garbage)`
 `;
 Icons.Edit = styled(edit)`
   ${iconStyle}
+  &:hover {
+    & path {
+      fill: blue;
+    }
+  }
 `;
 
 export { Wrapper, Container, Section, HouseImg, TableAnt, Icons };

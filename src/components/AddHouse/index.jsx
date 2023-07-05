@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container, Section, Wrapper } from "./style";
 import useRequest from "../../hooks/useRequest";
 import { useFormik } from "formik";
@@ -20,19 +20,28 @@ const AddHouse = () => {
 
   const [img, setImg] = useState("");
   const [imgs, setImgs] = useState([]);
-  const [state, setState] = useState([]);
+  const [initial, setInitial] = useState({});
   const [category, setCategory] = useState([]);
+  const { id } = useParams();
 
-  const info = () => {
-    message.info("Yangi uy qo'shildi!");
+  const info = (text) => {
+    message.info(text);
   };
 
+  const warning = () => {
+    message.warning("Uy ma'lumotlarini to'liq to'ldiring");
+  };
+
+  //single house
   useEffect(() => {
-    request({
-      url: `/houses/list`,
-    }).then((res) => {
-      setState(res?.data || []);
-    });
+    id &&
+      request({
+        url: `/houses/id/${id}`,
+        token: true,
+      }).then((res) => {
+        setImgs(res?.data?.attachments);
+        setInitial(res?.data);
+      });
   }, []);
 
   //category
@@ -45,32 +54,31 @@ const AddHouse = () => {
         setCategory(res.data || []);
       });
   }, []);
+
   const formik = useFormik({
-    initialValues: {
-      componentsDto: {},
-      homeAmenitiesDto: {},
-      houseDetails: {},
-    },
+    initialValues: initial,
+    enableReinitialize: true,
     onSubmit: (values) => {
-      console.log({ ...values, attachments: imgs });
       request({
-        method: "POST",
-        url: `/houses`,
+        url: id ? `/houses/${id}` : `/houses`,
+        method: id ? "PUT" : "POST",
         token: true,
         body: { ...values, attachments: imgs },
       }).then((res) => {
         console.log(res);
         if (res.success) {
           navigation("/myproperties");
-          info();
+          id
+            ? info("Uy e'loni yangilandi!")
+            : info("Yangi uy e'loni qo'shidi!");
+        } else {
+          warning();
         }
       });
     },
   });
 
   const onChange = ({ target: { value } }) => {
-    // console.log(`checked = ${e.target.checked}`);
-    // formik.values[name] = checked;
     setImg(value);
   };
 
@@ -84,10 +92,6 @@ const AddHouse = () => {
     let res = imgs.filter((val) => val.id !== id);
     setImgs(res);
   };
-  // const handleChange = (value) => {
-  //   console.log(`selected ${value}`);
-  // };
-  // console.log(category);
 
   return (
     <Container>
@@ -156,7 +160,6 @@ const AddHouse = () => {
                 />
                 <Select
                   defaultValue={"Select Category"}
-                  // onChange={formik.handleChange}
                   value={formik.values.category}
                 >
                   {category.map((value) => (
@@ -182,7 +185,7 @@ const AddHouse = () => {
                   name="houseDetails.area"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.area}
+                  value={initial?.houseDetails?.area}
                   placeholder="area"
                 />
                 <Input
@@ -190,7 +193,7 @@ const AddHouse = () => {
                   name="houseDetails.bath"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.bath}
+                  value={initial?.houseDetails?.bath}
                   placeholder="bath"
                 />
               </Section>
@@ -201,7 +204,7 @@ const AddHouse = () => {
                   name="houseDetails.beds"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.beds}
+                  value={initial?.houseDetails?.beds}
                   placeholder="beds"
                 />
                 <Input
@@ -209,7 +212,7 @@ const AddHouse = () => {
                   name="houseDetails.garage"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.garage}
+                  value={initial?.houseDetails?.garage}
                   placeholder="garage"
                 />
               </Section>
@@ -220,7 +223,7 @@ const AddHouse = () => {
                   name="houseDetails.room"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.room}
+                  value={initial?.houseDetails?.room}
                   placeholder="room"
                 />
                 <Input
@@ -228,7 +231,7 @@ const AddHouse = () => {
                   name="houseDetails.yearBuilt"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.yearBuilt}
+                  value={initial?.houseDetails?.yearBuilt}
                   placeholder="yearBuilt"
                 />
               </Section>
@@ -260,7 +263,7 @@ const AddHouse = () => {
           <Wrapper cl="true">
             <div className="subTitle">Location</div>
             <Section>
-              <Yandex center={state.location} />
+              <Yandex />
             </Section>
           </Wrapper>
 
@@ -429,7 +432,7 @@ const AddHouse = () => {
             />
           </Wrapper>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">{id ? "Update" : "Submit"}</Button>
         </Wrapper>
       </form>
     </Container>
