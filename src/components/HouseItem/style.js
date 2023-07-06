@@ -12,10 +12,10 @@ import { ReactComponent as barbecue } from "../../assets/icons/barbecue.svg";
 
 const Wrapper = styled.div`
   display: flex;
+  gap: ${({ gap }) => gap && `${gap}px`};
   max-width: 1440px;
   padding: var(--padding);
   margin: auto;
-  gap: ${({ gap }) => gap && `${gap}px`};
 `;
 const Container = styled.div`
   width: 100%;
@@ -85,6 +85,45 @@ const MessageInfo = styled.div`
   line-height: 20px;
   color: #696969;
 `;
+
+// Imgs
+const WrapImg = styled.div`
+  display: flex;
+  max-width: 1440px;
+  padding: var(--padding);
+  margin: 24px auto;
+  gap: 20px;
+`;
+const ItemsImg = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+const ItemImg = styled.div`
+  position: relative;
+`;
+const HouseImg = styled.img`
+  max-width: ${({ width }) => width && `${width}px`};
+  max-height: ${({ height }) => height && `${height}px`};
+`;
+const Blur = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 44px;
+  letter-spacing: -0.72px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+`;
+
 const Icons = styled.div``;
 
 const styleSvg = css`
@@ -159,4 +198,9 @@ export {
   Message,
   MessageInfo,
   Icons,
+  WrapImg,
+  ItemImg,
+  ItemsImg,
+  HouseImg,
+  Blur,
 };

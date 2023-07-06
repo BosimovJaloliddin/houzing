@@ -65,7 +65,6 @@ const AddHouse = () => {
         token: true,
         body: { ...values, attachments: imgs },
       }).then((res) => {
-        console.log(res);
         if (res.success) {
           navigation("/myproperties");
           id
@@ -83,13 +82,13 @@ const AddHouse = () => {
   };
 
   const addImg = () => {
-    if (img.length && imgs.length < 4) {
-      setImgs([...imgs, { id: img.length * Math.random(), imgPath: img }]);
+    if (img.length) {
+      setImgs([...imgs, { id: img.length + Math.random(), imgPath: img }]);
       setImg("");
     }
   };
-  const onDelImg = (id) => {
-    let res = imgs.filter((val) => val.id !== id);
+  const onDelImg = (path) => {
+    let res = imgs.filter((val) => val.imgPath !== path);
     setImgs(res);
   };
 
@@ -280,7 +279,8 @@ const AddHouse = () => {
                 {imgs.map((v, idx) => {
                   return (
                     <Section al="true" gap={24} key={idx}>
-                      {v.imgPath} <Icons.Del onClick={() => onDelImg(v.id)} />
+                      {v.imgPath}{" "}
+                      <Icons.Del onClick={() => onDelImg(v.imgPath)} />
                     </Section>
                   );
                 })}

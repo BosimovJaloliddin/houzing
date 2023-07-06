@@ -76,7 +76,11 @@ const MyProperties = () => {
               </Section>
             </Section>
             <Section style={{ marginLeft: "auto" }}>
-              <Button height={32} type={"dark"}>
+              <Button
+                height={32}
+                type={"dark"}
+                onClick={() => navigate(`/properties/${state.id}`)}
+              >
                 FOR SALE
               </Button>
             </Section>

@@ -46,7 +46,6 @@ const HouseCard = ({ data = {}, onClick }) => {
         refetch && refetch();
       });
   };
-  console.log(favorite);
 
   return (
     <Container onClick={onClick}>

@@ -21,6 +21,11 @@ import {
   Message,
   MessageInfo,
   Icons,
+  WrapImg,
+  ItemImg,
+  HouseImg,
+  Blur,
+  ItemsImg,
 } from "./style";
 
 const HouseItem = () => {
@@ -40,6 +45,33 @@ const HouseItem = () => {
   };
   return (
     <>
+      <WrapImg>
+        <HouseImg
+          width={580}
+          height={400}
+          src={state.attachments && state?.attachments[0]?.imgPath}
+        />
+        <ItemsImg>
+          {state?.attachments?.slice(1, 5).map((value, index) => {
+            return index === 3 ? (
+              <ItemImg>
+                <HouseImg
+                  width={280}
+                  height={190}
+                  src={value?.imgPath && value?.imgPath}
+                />
+                <Blur>+{state.attachments.length - 4}</Blur>
+              </ItemImg>
+            ) : (
+              <HouseImg
+                width={280}
+                height={190}
+                src={value?.imgPath && value?.imgPath}
+              />
+            );
+          })}
+        </ItemsImg>
+      </WrapImg>
       <Wrapper gap={20}>
         <Container flx={3}>
           <Content>
